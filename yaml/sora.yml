@@ -1,0 +1,12 @@
+    site_name:                      Sora Test Site
+    site_description:               Static Site Generator Built with Lua
+    home_page:                      http://sora.soupmode.com
+    domain_name:                    sora.soupmode.com
+    app_name:                       Sora 1.0
+    template_home:                  /home/sora/Sora/tmpl
+    cookie_prefix:                  sora
+    css_dir_url:                    /css 
+    maincss_url:                    http://sora.soupmode.com/css/sora.css
+    default_doc_root:               /home/sora/Sora/root
+    debug_mode:                     true
+    api_url:                        http://wren.soupmode.com/api/v1

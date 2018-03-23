@@ -1,0 +1,65 @@
+form {
+    font-size: 20px;
+}
+
+textarea {
+    /* font-family: "Courier New", Courier,  monospace, sans-serif;  */
+    font-family: monospace, sans-serif; 
+    font-size: 90%;
+    overflow: auto;
+    color: #222;
+    line-height: 1.7em;
+    background: #f8f8ff;
+    border: 1px solid #ccc;
+    margin: 0px;
+}
+
+#textareaboxpost {
+    width: 90%
+    height: 250px;
+}
+
+.submitbutton {
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    border-radius: 10px; 
+    font-size: 90%;
+    color: #666;
+    background: #fff;
+    border: 1px solid #b8b8b8;
+}
+
+.submitbutton:hover {
+    color: #000;
+    border: 1px solid #222;
+}
+
+input {
+line-height: normal;
+font-family: inherit;
+font-size: 100%;
+margin: 0;
+}
+
+
+@media only screen and (min-width: 320px) { 
+    #textareaboxpost {
+        width: 95%;
+        height: 125px;
+    }
+}
+
+@media only screen and (min-width: 768px) {
+    #textareaboxpost {
+        width: 90%;
+        height: 400px;
+    }
+}
+
+@media only screen and (min-width: 1025px) {
+    #textareaboxpost {
+        width: 70%;
+        height: 600px;
+    }
+}
+
