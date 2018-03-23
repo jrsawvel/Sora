@@ -7,6 +7,6 @@
     cookie_prefix:                  sora
     css_dir_url:                    /css 
     maincss_url:                    http://sora.soupmode.com/css/sora.css
-    default_doc_root:               /home/sora/Sora/root
+    default_doc_root:               /home/sora/docroot
     debug_mode:                     true
     api_url:                        http://wren.soupmode.com/api/v1

@@ -19,6 +19,7 @@ function M.execute()
                    login      = user.show_login_form,
                    dologin    = user.do_login,
                    nopwdlogin = user.no_password_login, 
+                   logout     = user.logout,
                    showerror  = display.do_invalid_function
                  }
 

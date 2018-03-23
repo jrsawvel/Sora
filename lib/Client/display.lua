@@ -58,8 +58,18 @@ function M.set_cookie(cname, cvalue, ctable)
 end
 
 
+function M.get_cookie(cname)
+    return cookies.get(config.get_value_for("cookie_prefix") .. cname)
+end
+
+
 function M.unescape(str)
     return urlcode.unescape(str)
+end
+
+
+function M.escape(str)
+    return urlcode.escape(str)
 end
 
 
