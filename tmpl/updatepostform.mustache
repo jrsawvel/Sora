@@ -1,0 +1,48 @@
+{{> header}}
+
+<link rel="stylesheet" type="text/css" href="{{{css_dir_url}}}/form.css"  /> 
+
+{{#error_exists}}
+<p>
+<h2>Article Input Error</strong></h2>
+{{{errormessage}}}
+</p>
+{{/error_exists}}
+
+
+{{#previewingpost}} 
+
+<!----------- Article Start ------------> 
+
+<h1>{{{title}}}</h1> 
+
+{{{html}}}
+
+<!----------- Article End ------------> 
+
+{{/previewingpost}}
+
+
+<!-- markup -->
+
+<center>
+<div style="margin-top: 20px; font-size: 20px">
+Editing: <strong><a href="/{{{html_file}}}">{{{html_file}}}</a>
+</div>
+<form id="articleform" method="post" action="/sora/updatepost">
+<input type="hidden" name="original_slug" value="{{{original_slug}}}"> 
+
+<p>
+<textarea class="textareaboxpost" name="markup" rows="15" cols="60">{{{markup}}}</textarea>
+<br />
+<input class="submitbutton" type="submit" name="sb" value="Preview">
+ &nbsp; &nbsp;
+ <span class="greylinks"><a href="/sora/editorupdate/{{{post_id}}}"><small>editor</small></a></span>
+ &nbsp; &nbsp;
+<input class="submitbutton" type="submit" name="sb" value="Update">
+</p>
+
+</form>
+</center>
+
+{{> footer}}

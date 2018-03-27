@@ -4,10 +4,12 @@ local M = {}
 -- installed modules
 
 -- my modules
-local requri   = require "requri"
-local user     = require "user"
-local display  = require "display"
-local search   = require "search"
+local requri     = require "requri"
+local user       = require "user"
+local display    = require "display"
+local search     = require "search"
+local createPost = require "createPost"
+local updatePost = require "updatePost"
 
 
 function M.execute()
@@ -20,6 +22,10 @@ function M.execute()
                    dologin    = user.do_login,
                    nopwdlogin = user.no_password_login, 
                    logout     = user.logout,
+                   create     = createPost.show_new_post_form, 
+                   createpost = createPost.create_post,
+                   update     = updatePost.show_post_to_edit,
+                   updatepost = updatePost.update_post,
                    showerror  = display.do_invalid_function
                  }
 

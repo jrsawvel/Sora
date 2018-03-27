@@ -32,9 +32,7 @@ end
 
 
 function M.unsecure_json_post(url, json_text)
-
     local response_body = {}
-
     local res, status_code, response_headers, status_string = http.request{
         url = url,
         method = "POST", 
@@ -48,11 +46,27 @@ function M.unsecure_json_post(url, json_text)
         sink = ltn12.sink.table(response_body),
     }
     response_body = table.concat(response_body)
-    
     return response_body, status_code, response_headers, status_string
 end
 
 
 
+function M.unsecure_json_put(url, json_text)
+    local response_body = {}
+    local res, status_code, response_headers, status_string = http.request{
+        url = url,
+        method = "PUT", 
+        headers = 
+          {
+              ["User-Agent"] = "Mozilla/5.0 (X11; CrOS armv7l 9901.77.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3202.97 Safari/537.36",
+              ["Content-Type"] = "application/json";
+              ["Content-Length"] = #json_text;
+          },
+        source = ltn12.source.string(json_text),
+        sink = ltn12.sink.table(response_body),
+    }
+    response_body = table.concat(response_body)
+    return response_body, status_code, response_headers, status_string
+end
 
 return M

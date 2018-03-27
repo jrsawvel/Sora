@@ -58,6 +58,7 @@ end
 
 function M.show_login_form(a_params)
     page.set_template_name("loginform")
+    page.set_template_variable("css_dir_url", config.get_value_for("css_dir_url"))
     local html_output = page.get_output("Login Form")
     display.web_page(html_output) 
 end

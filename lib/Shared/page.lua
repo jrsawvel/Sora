@@ -36,7 +36,7 @@ function M.get_output(title)
     M.set_template_variable("pagetitle", title .. " - " .. site_name )
     M.set_template_variable("site_name", site_name)
     M.set_template_variable("home_page", config.get_value_for("home_page"))
-    M.set_template_variable("cssurl",    config.get_value_for("cssurl"))
+    M.set_template_variable("maincss_url", config.get_value_for("maincss_url"))
     M.set_template_variable("pagecreateddate", utils.get_date_time())
     return lustache:render(M.template_text, M.view_model, partials)
 end

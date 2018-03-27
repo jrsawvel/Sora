@@ -203,6 +203,32 @@ function M.round (x)
 end
 
 
+-- line feed = 10 and carriage return = 13. don't encode.
+function encode_extended_ascii_char(dec_char)
+    if dec_char == 10 or dec_char == 13 then
+        return utf8.char(dec_char)
+    elseif dec_char >= 32 and dec_char <= 37 then -- skip the amper (38) because we want to encode it.
+        return utf8.char(dec_char)
+    elseif dec_char >= 39 and dec_char <= 126 then
+        return utf8.char(dec_char)
+    else 
+        return "&#" .. dec_char .. ";"
+    end
+end
+
+
+
+function M.encode_extended_ascii(str) 
+    local new_str = ""
+
+    for i, c in utf8.codes(str) do
+        local x = encode_extended_ascii_char(c)
+        new_str = new_str .. x
+    end
+
+    return new_str
+end
+
 
 return M
 

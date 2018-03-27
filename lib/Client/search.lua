@@ -22,7 +22,7 @@ function M.do_search(a_params)
     if author_name == nil or session_id == nil or rev == nil then
         display.report_error("user", "Unable to complete action.", "You are not logged in.")
     else
-        local query_string = "/?author=" .. author_name .. "&session_id=" .. session_id .. "&rev=" .. rev
+        local query_string = "?author=" .. author_name .. "&session_id=" .. session_id .. "&rev=" .. rev
 
         local search_string = nil 
 
