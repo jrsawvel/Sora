@@ -43,6 +43,8 @@ end
 
 
 function M.get_output_min()
+    M.set_template_variable("site_name", config.get_value_for("site_name"))
+    M.set_template_variable("home_page", config.get_value_for("home_page"))
     return lustache:render(M.template_text, M.view_model, partials)
 end
 

@@ -17,16 +17,18 @@ function M.execute()
 
 
     local subs = { 
-                   search     = search.do_search,
-                   login      = user.show_login_form,
-                   dologin    = user.do_login,
-                   nopwdlogin = user.no_password_login, 
-                   logout     = user.logout,
-                   create     = createPost.show_new_post_form, 
-                   createpost = createPost.create_post,
-                   update     = updatePost.show_post_to_edit,
-                   updatepost = updatePost.update_post,
-                   showerror  = display.do_invalid_function
+                   search       = search.do_search,
+                   login        = user.show_login_form,
+                   dologin      = user.do_login,
+                   nopwdlogin   = user.no_password_login, 
+                   logout       = user.logout,
+                   create       = createPost.show_new_post_form, 
+                   createpost   = createPost.create_post,
+                   update       = updatePost.show_post_to_edit,
+                   updatepost   = updatePost.update_post,
+                   editorcreate = createPost.show_editor_create,   
+                   editorupdate = updatePost.show_editor_update,
+                   showerror    = display.do_invalid_function
                  }
 
 

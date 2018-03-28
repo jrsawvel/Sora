@@ -110,5 +110,45 @@ function M.update_post()
 end
 
 
+function M.show_editor_update(a_params)
+
+    local author_name  = display.get_cookie("author_name")
+    local session_id   = display.get_cookie("session_id")
+    local rev          = display.get_cookie("rev")
+
+    if author_name == nil or session_id == nil or rev == nil then
+        display.report_error("user", "Cannot perform action.", "You are not logged in.")
+    else
+        local post_id = a_params[2]   -- in this app, id = the slug or post uri 
+        local original_slug = post_id
+ 
+        local query_string = "?author=" .. author_name .. "&session_id=" .. session_id .. "&rev=" .. rev
+        query_string = query_string .. "&text=markup"
+
+        local api_url = config.get_value_for("api_url") .. "/posts/" .. post_id
+
+        api_url = api_url .. query_string
+     
+        local response_body, status_code, headers_table, status_string = httputils.get_unsecure_web_page(api_url)
+
+        local h_json = cjson.decode(response_body)
+
+        if status_code >= 200 and status_code < 300 then
+            page.set_template_name("tanager")
+            page.set_template_variable("action", "updateblog")
+            page.set_template_variable("api_url", config.get_value_for("api_url"))
+            page.set_template_variable("markup", entities.decode(h_json.markup))    
+            page.set_template_variable("post_id", original_slug)
+            display.web_page(page.get_output_min("Editing - Editor "))
+        elseif status_code >= 400 and status_code < 500 then
+            display.report_error("user", h_json["user_message"], h_json["system_message"])
+        else
+            display.report_error("user", "Unable to complete request.", "Invalid response code returned from API. " .. h_json["user_message"] .. " - " .. h_json["system_message"])
+        end
+
+    end
+
+end
+
 
 return M

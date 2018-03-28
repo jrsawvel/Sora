@@ -1,0 +1,74 @@
+<!doctype html>
+<!--[if (gte IE 9)|!(IE)]><!-->
+<html class="no-js" lang="en">
+<!--<![endif]-->
+<head>
+  <title>enhanced typing mode</title>
+<meta charset="utf-8"> 
+<!-- <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" /> -->
+<meta name="viewport" content="initial-scale=1, width=device-width" />
+<link rel="stylesheet" type="text/css" media="screen" href="/javascript/editor/tanager.css" />
+<link rel="stylesheet" type="text/css" href="/css/sora.css"  />   
+<script src="/javascript/editor/tanager.js"></script>
+
+<script>
+    window.onbeforeunload = function(){
+     return 'You have begun to edit.';
+};    
+
+</script>
+
+<style>
+body {background: #ddd;}
+</style>
+
+</head>
+<body>
+
+<header>
+<nav>
+<div id="navmenu">
+<ul>
+<!-- <li><a title="Home Page" href="{{{home_page}}}">{{{site_name}}}</a></li> -->
+<li><a title="Home Page" href="{{{home_page}}}">&lt;</a></li>
+<li><button class="bluebutton" id="moveButton">&gt;&gt;</button></li>
+<li><button class="bluebutton" id="resetButton">&lt;&lt;</button></li> 
+<li><button class="bluebutton" id="previewButton">preview</button></li> 
+<li><button class="bluebutton" id="saveButton">save</button></li>
+<li><span id="saveposttext"> saving </span></li>
+<li><span id="wc"></span></li>
+<li><span id="rt"></span></li>
+<li><span id="ct"></span></li>
+</ul>
+</div>
+</nav>
+</header>
+
+<div id="container">
+
+  <div id="col_left" class="col">
+   <form id="parulaform" method="post" action="/addarticle">
+   <input type="hidden" id="tanagerapiurl"     value="{{{api_url}}}">
+   <input type="hidden" id="tanageraction"     value="{{{action}}}">
+   <input type="hidden" id="tanagerpostid"     value="{{{post_id}}}">
+   <input type="hidden" id="tanagerpostrev"    value="{{{post_rev}}}">
+    <span class="tools">
+    </span>
+    <textarea name="article" onkeypress="return countKeyStrokes()" id="tx_input" cols="80" rows="20" class="panel" autofocus>{{{markup}}}</textarea>
+   </form>
+  </div> <!-- end col_left -->
+
+  <div id="col_right" class="col">
+   <article>
+    <section class="article-body">
+     <div id="text_preview" class="panel">
+     </div> <!-- end text_preview -->
+    </section>
+   </article>
+  </div> <!-- end col_right -->
+
+</div> <!-- end container -->
+
+</body>
+</html>
+

@@ -4,7 +4,7 @@
 
 {{#error_exists}}
 <p>
-<h2>Article Input Error</strong></h2>
+<h2>Article Input Error</h2>
 {{{errormessage}}}
 </p>
 {{/error_exists}}
@@ -27,7 +27,7 @@
 
 <center>
 <div style="margin-top: 20px; font-size: 20px">
-Editing: <strong><a href="/{{{html_file}}}">{{{html_file}}}</a>
+Editing: <a href="/{{{html_file}}}">{{{html_file}}}</a>
 </div>
 <form id="articleform" method="post" action="/sora/updatepost">
 <input type="hidden" name="original_slug" value="{{{original_slug}}}"> 

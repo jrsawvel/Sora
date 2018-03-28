@@ -242,7 +242,7 @@ $.addEventListener("DOMContentLoaded", function() {
    
         var hv = { 
             action:   $.getElementById('tanageraction').value,
-            cgiapp:   $.getElementById('tanagercgiapp').value,
+            // cgiapp:   $.getElementById('tanagercgiapp').value,
             apiurl:   $.getElementById('tanagerapiurl').value,        
             postrev:  $.getElementById('tanagerpostrev').value,
             postid:   $.getElementById('tanagerpostid').value
@@ -329,7 +329,7 @@ $.addEventListener("DOMContentLoaded", function() {
         var hv = getHiddenHTMLValues();
 
         var action  = hv.action;
-        var cgiapp  = hv.cgiapp;
+//        var cgiapp  = hv.cgiapp;
         var apiurl  = hv.apiurl;
         var postrev = hv.postrev;
         var postid  = hv.postid;
@@ -351,6 +351,7 @@ $.addEventListener("DOMContentLoaded", function() {
             submit_type: sbtype,
             form_type:   'ajax',
             markup:      markup,
+            crossDomain: true,
             original_slug:     postid,
         };
 
