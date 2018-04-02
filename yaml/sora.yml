@@ -1,12 +1,22 @@
+# these variables are required by the Client code
     site_name:                      Sora Test Site
     site_description:               Static Site Generator Built with Lua
-    home_page:                      http://sora.soupmode.com
-    domain_name:                    sora.soupmode.com
+    home_page:                      http://soratestsite.com
+    domain_name:                    soratestsite.com
     app_name:                       Sora 1.0
     template_home:                  /home/sora/Sora/tmpl
     cookie_prefix:                  sora
     css_dir_url:                    /css 
-    maincss_url:                    http://sora.soupmode.com/css/soralad.css
+    maincss_url:                    http://soratestsite.com/css/sora2.css
     default_doc_root:               /home/sora/docroot
     debug_mode:                     true
-    api_url:                        http://wren.soupmode.com/api/v1
+    api_url:                        http://soratestsite.com/api/v1
+# these variables are required by the API code, which might also use some of the above vars
+    author_name:                    jr
+    author_email:                   x@x.com
+    author_email_2:                 y@y.com
+    session_id_storage:             /home/sora/sessionids
+    searches_storage:               /home/sora/searches
+    mailgun_api_key:                mailgun-api-key
+    mailgun_domain:                 x.com
+    mailgun_from:                   Sora <postmaster@x.com>

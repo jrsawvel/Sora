@@ -7,11 +7,11 @@ local io     = require "io"
 local cjson  = require "cjson"
 
 
-local api_url = "http://wren.soupmode.com/api/v1"
+local api_url = "http://sora.soupmode.com/api/v1"
 
 local request_body = { 
-                         email = "x@x.com", 
-                         url   = "http://homesite/nopwdlogin"
+                         email = "jothut@fastmail.fm",
+                         url   = "http://sora.soupmode.com/sora/nopwdlogin"
                      }
 
 local json_text = cjson.encode(request_body)

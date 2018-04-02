@@ -2,5 +2,5 @@
 
 package.path = package.path .. ';/home/sora/Sora/lib/Shared/?.lua'
 package.path = package.path .. ';/home/sora/Sora/lib/Client/?.lua'
-local client = require "cDispatch"
+local client = require "clientdispatch"
 client.execute()
