@@ -19,7 +19,7 @@ end
 assert(source_url)
 assert(target_url)
 
-local api_url = "http://wren.soupmode.com/api/v1"
+local api_url = "http://sora.soupmode.com/api/v1"
 
 local request_body = "source=" .. source_url .. "&target=" .. target_url
 

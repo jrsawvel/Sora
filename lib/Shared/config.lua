@@ -6,7 +6,7 @@ local M = {}
 local io      = require "io"
 local lyaml   = require "lyaml"
 
-local filename = "/home/sora/Sora/yaml/sora.yml"
+local filename = "/home/sora/config/sora.yml"
 
 local f = assert(io.open(filename, "r"))
 

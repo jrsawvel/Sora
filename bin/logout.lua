@@ -32,7 +32,7 @@ assert(value.session_id)
 assert(value.rev)
 
 
-local api_url = "http://wren.soupmode.com/api/v1"
+local api_url = "http://sora.soupmode.com/api/v1"
 
 local full_url = api_url .. "/users/logout?author=" .. value.author_name .. "&session_id=" .. value.session_id .. "&rev=" .. value.rev
 

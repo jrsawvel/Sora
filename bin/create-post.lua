@@ -27,14 +27,14 @@ assert(value.session_id)
 assert(value.rev)
 
 
-local api_url = "http://wren.soupmode.com/api/v1"
+local api_url = "http://sora.soupmode.com/api/v1"
 
 local request_body = { 
                          author      = value.author_name,
                          session_id  = value.session_id,
                          rev         = value.rev,
                          submit_type = "Create",
-                         markup      = "# Test Post " .. dt .. "\n\nHello World from a Lua Script"
+                         markup      = "# Test Post " .. dt .. "\n\nHello World from a Lua Script\n\n<!-- dir : 2018/04/06 -->\n\n"
                      }
 
 

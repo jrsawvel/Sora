@@ -21,7 +21,8 @@ function M.is_valid_login(submitted_author_name, submitted_session_id, submitted
     local author_name = config.get_value_for("author_name")
 
     if submitted_author_name ~= author_name then
-        return false
+-- debug commented out
+--        return false 
     else
         local h_session = _read_session_file(submitted_rev)
         if submitted_session_id ~= h_session.session_id then

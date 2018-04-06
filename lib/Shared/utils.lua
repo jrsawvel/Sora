@@ -10,6 +10,17 @@ local https = require "ssl.https"
 
 
 
+function M.clean_title(str)
+    str = string.gsub(str, "-", "")
+    str = string.gsub(str, " ", "-")
+    str = string.gsub(str, ":", "-")
+    str = rex.gsub(str, "--", "")
+    str =  rex.gsub(str, "[^-a-zA-Z0-9]","")
+    return string.lower(str)
+end
+
+
+
 -- https://gist.github.com/ignisdesign/4323051
 function M.urlencode(str)
    if (str) then
@@ -143,11 +154,14 @@ function M.get_date_time()
         time_type = "EST"
     end
 
--- damn hack - mar 11, 2018 - frigging isdst does not work as expected. it's always false.
-time_type = "EDT"
-localsecs = epochsecs - (4 * 3600)
+    -- damn hack - mar 11, 2018 - frigging isdst does not work as expected. it's always false.
+    -- time_type = "EDT"
+    -- localsecs = epochsecs - (4 * 3600)
+    
+    time_type = "GMT"
 
-    local dt_str = os.date("%a, %b %d, %Y - %I:%M %p", localsecs)
+    -- local dt_str = os.date("%a, %b %d, %Y - %I:%M %p", localsecs)
+    local dt_str = os.date("%a, %b %d, %Y - %I:%M %p", os.time())
 
     return(dt_str .. " " .. time_type)
 end

@@ -1,0 +1,15 @@
+
+April 2, 2018
+
+Lua modules to create in the API directory:
+
+build - for the rebuild command prompt script.
+
+create
+files
+format
+posttitle
+posts
+read
+update
+

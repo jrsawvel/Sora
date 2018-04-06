@@ -20,3 +20,9 @@
     mailgun_api_key:                mailgun-api-key
     mailgun_domain:                 x.com
     mailgun_from:                   Sora <postmaster@x.com>
+    markup_storage:                 /home/sora/markup
+    links_json_file:                links.json
+    links_json_file_storage:        /home/sora/filelist
+    json_feed_file:                 feed.json
+    hfeed_file:                     hfeed.html
+    max_entries:                    40

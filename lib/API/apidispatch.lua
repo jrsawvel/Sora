@@ -6,7 +6,7 @@ local M = {}
 -- my modules
 local requri    = require "requri"
 local users     = require "users"
---local posts     = require "Posts"
+local posts     = require "posts"
 local searches  = require "searches"
 local rj        = require "returnjson"
 
@@ -15,7 +15,7 @@ function M.execute()
     local a_cgi_params = requri.get_cgi_params()
 
     local subs = { 
- --                    posts     = posts.posts,
+                     posts     = posts.posts,
                      users     = users.users,
                      searches  = searches.searches,
                      showerror = rj.show_error

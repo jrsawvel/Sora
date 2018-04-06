@@ -1,0 +1,17 @@
+{{> header}}
+
+<h1>{{{site_name}}}</h1>
+
+<p><em>{{{site_description}}}</em></p>
+
+{{#article_loop}}
+
+<p class="h-entry">
+  <a class="u-url" href="{{{url}}}"><span class="p-name">{{{title}}}</span></a>
+  <br /><time class="dt-published" datetime="{{{created_date}}}T{{{created_time}}}Z">{{{created_date}}} {{{created_time}}} Z</time>
+  <span class="p-author h-card" style="display:none;">{{{author}}}</span>
+</p>
+
+{{/article_loop}}
+
+{{> footer}}
