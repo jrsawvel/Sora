@@ -2,6 +2,8 @@
 local M = {}
 
 -- installed modules
+local cgilua = require "cgilua"
+
 
 -- my modules
 local requri    = require "requri"
@@ -31,6 +33,12 @@ function M.execute()
             subs.showerror(a_cgi_params)
         end          
     end
+
 end
+
+    cgilua.seterroroutput (function (s)
+        s = string.gsub (string.gsub (s, "\n", "<br>\n"), "\t", "  ")
+        rj.report_error("500", "Server error", s)
+    end)
 
 return M

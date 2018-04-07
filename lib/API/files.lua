@@ -113,6 +113,12 @@ function _save_markup_to_web_directory(submit_type, markup, hash)
 
     if hash.dir ~= nil then
         markup_filename = config.get_value_for("default_doc_root") .. "/" .. hash.dir .. "/" .. hash.slug .. ".txt"
+        local dir_path = config.get_value_for("default_doc_root") .. "/" .. hash.dir
+        local r = os.execute("mkdir -p " .. dir_path)
+        if r == false then
+            rj.report_error("500", "Bad directory path.", "Could not create directory structure.")
+            return false
+        end
     else 
         markup_filename = config.get_value_for("default_doc_root") .. "/" .. hash.slug .. ".txt"
     end
@@ -120,24 +126,16 @@ function _save_markup_to_web_directory(submit_type, markup, hash)
     if rex.match(markup_filename, "^[a-zA-Z0-9/%.%-_]+$") == nil then
         rj.report_error("500", "Bad file name or directory path.", "Could not write markup for post id: " .. hash.title .. " filename: " .. markup_filename)
         return false
-    else 
-
-        local dir_path = config.get_value_for("default_doc_root") .. "/" .. hash.dir
-        local r = os.execute("mkdir -p " .. dir_path)
-        if r == false then
-            rj.report_error("500", "Bad directory path.", "Could not create directory structure.")
-            return false
-        else
-            local o = io.open(markup_filename, "w")
-            if o == nil then
-                rj.report_error("500", "Unable to open file for write.", "Post id: " .. hash.slug .. " filename: " .. markup_filename)
-                return false
-            else
-                o:write(markup .. "\n")
-                o:close()
-            end
-        end
     end
+
+    local o = io.open(markup_filename, "w")
+    if o == nil then
+        rj.report_error("500", "Unable to open file for write.", "Post id: " .. hash.slug .. " filename: " .. markup_filename)
+        return false
+    end
+
+    o:write(markup .. "\n")
+    o:close()
 
     return true
 
@@ -188,6 +186,12 @@ function _save_html(html, hash)
 
     if hash.dir ~= nil then
         html_filename = config.get_value_for("default_doc_root") .. "/" .. hash.dir .. "/" .. hash.slug .. ".html"
+        local dir_path = config.get_value_for("default_doc_root") .. "/" .. hash.dir
+        local r = os.execute("mkdir -p " .. dir_path)
+        if r == false then
+            rj.report_error("500", "Bad directory path.", "Could not create directory structure.")
+            return false
+        end
     else 
         html_filename = config.get_value_for("default_doc_root") .. "/" .. hash.slug .. ".html"
     end
@@ -195,24 +199,16 @@ function _save_html(html, hash)
     if rex.match(html_filename, "^[a-zA-Z0-9/%.%-_]+$") == nil then
         rj.report_error("500", "Bad file name or directory path.", "Could not write html for post id: " .. hash.title .. " filename: " .. html_filename)
         return false
-    else 
-
-        local dir_path = config.get_value_for("default_doc_root") .. "/" .. hash.dir
-        local r = os.execute("mkdir -p " .. dir_path)
-        if r == false then
-            rj.report_error("500", "Bad directory path.", "Could not create directory structure.")
-            return false
-        else
-            local o = io.open(html_filename, "w")
-            if o == nil then
-                rj.report_error("500", "Unable to open file for write.", "Post id: " .. hash.slug .. " filename: " .. html_filename)
-                return false
-            else
-                o:write(html .. "\n")
-                o:close()
-            end
-        end
     end
+
+    local o = io.open(html_filename, "w")
+    if o == nil then
+        rj.report_error("500", "Unable to open file for write.", "Post id: " .. hash.slug .. " filename: " .. html_filename)
+        return false
+    end
+     
+    o:write(html .. "\n")
+    o:close()
 
     return true
 

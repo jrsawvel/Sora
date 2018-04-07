@@ -34,7 +34,8 @@ local request_body = {
                          session_id  = value.session_id,
                          rev         = value.rev,
                          submit_type = "Create",
-                         markup      = "# Test Post " .. dt .. "\n\nHello World from a Lua Script\n\n<!-- dir : 2018/04/06 -->\n\n"
+                         markup      = "# Test Post " .. dt .. "\n\nHello World from a Lua Script\n\n"
+--                         markup      = "# Test Post " .. dt .. "\n\nHello World from a Lua Script\n\n<!-- dir : 2018/04/06 -->\n\n"
                      }
 
 
