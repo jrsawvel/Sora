@@ -35,7 +35,6 @@ function M.searches(a_params)
         local default_doc_root = config.get_value_for("default_doc_root")
 
         local search_results_filename = config.get_value_for("searches_storage") .. "/" .. os.time() .. ".txt"
-default_doc_root = "/home/wren/Wren/root"
 
         local grep_cmd = "grep -i -R --exclude-dir=versions --include='*.txt' -m 1 '" .. search_text .. "' " .. default_doc_root .. " > " .. search_results_filename
 
@@ -53,7 +52,7 @@ default_doc_root = "/home/wren/Wren/root"
                     local tmp_str = rex.gsub(tmp_array[1], default_doc_root .. "/" , "")
                     local tmp_hash = {
                         uri = tmp_str,
-                        url = home_page .. "/" .. tmp_str .. "html"
+                        url = home_page .. "/" .. tmp_str .. ".html"
                     }
                     table.insert(posts, tmp_hash)
                     total_hits = total_hits + 1
@@ -68,7 +67,7 @@ default_doc_root = "/home/wren/Wren/root"
                 rj.success(hash) 
             end
         else
-            rj.report_error("400", "Unable to execute search.", "")
+            rj.report_error("400", "Unable to execute search.", grep_cmd)
         end
 
     end

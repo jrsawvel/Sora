@@ -16,6 +16,50 @@ local utils     = require "utils"
 
 
 
+function _create_jsonfeed_file(hash, stream)
+
+    local json_hash = {}
+
+    json_hash.version        =  "https://jsonfeed.org/version/1"
+    json_hash.title          =  config.get_value_for("site_name")
+    json_hash.home_page_url  =  config.get_value_for("home_page") 
+    json_hash.feed_url       =  config.get_value_for("home_page") .. "/feed.json"
+    json_hash.description    =  config.get_value_for("site_description")
+    json_hash.author = {}
+    json_hash.author.name    =  config.get_value_for("author_name") 
+
+    local items = {}
+
+    for i=1, #stream do
+        local h = {}
+        h.id  = stream[i].url
+        h.url = stream[i].url
+--        h.title = stream[i].title
+        h.content_text= stream[i].title
+        h.date_published = stream[i].created
+        table.insert(items, h)
+    end
+
+    json_hash.items = items
+
+    local json_text = pretty(json_hash, "\n", "  ")
+
+    local json_feed_filename = config.get_value_for("default_doc_root") .. "/" .. config.get_value_for("json_feed_file")
+
+    local o = io.open(json_feed_filename, "w")
+    if o == nil then
+        rj.report_error("500", "Unable to open JSON feed file for write.", json_feed_filename)
+        return false
+    else
+        o:write(json_text)
+        o:close()
+    end
+
+    return true
+
+end
+
+
 
 function _create_hfeed_file(hash, stream)
 
@@ -87,7 +131,7 @@ function _update_links_json_file(hash)
 
         t.posts = stream 
 
-        json_text = pretty(t)
+        json_text = pretty(t, "\n", "  ")
 
 --        json_text = cjson.encode(t)
 
@@ -269,9 +313,7 @@ function M.output(submit_type, hash, markup)
         if _create_hfeed_file(hash, stream) == false then
             return false
         end
---        _create_jsonfeed_file(hash, stream)
-rj.report_error("400", "debug", "okay")
-return false
+        _create_jsonfeed_file(hash, stream)
     end
 
     return true
