@@ -1,36 +1,20 @@
-/* for system fonts: 23px 
-   for Verdana: 21px
-*/
-
-p, li, dl, table, center {
-    font-size: 22px;
-    font-size: 2.2rem;
-}
-
-html, body, article, h1, h2, h3, h4, h5, p, pre code, .sitewide-footer  {
-    padding: 0;
-    margin: 0;
-}
+/* .home-link, .sitewide-footer {display: none;} */
 
 html {
     font-size: 62.5%; /* ~10px browser default */
-    height: 100%;
-    max-height: 100%;
 }
-
 body {
-    color:     #222;
-    /* background-color: #fff; */
-    background: #fff8dc; /* cornsilk */
-/*
-    line-height: 38px;
-    line-height: 3.8em;
-*/
-
-line-height: 38px;
-line-height: 3.8rem;
-
-font-family: 
+  font-size: 22px; /* em math based upon this */
+  font-size: 2.2em;
+  margin: 0 auto;
+  max-width: 720px;
+  max-width: 32.7272727273em;
+  width: 100%;
+  background-color: #fffff6;
+  color:     #222;
+  line-height: 38px;
+  line-height: 3.8rem;
+  font-family: 
     -apple-system, 
     BlinkMacSystemFont, 
     "San Francisco", 
@@ -48,104 +32,97 @@ font-family:
     sans-serif;
 }
 
-b,
-h1,
-h3,
-h4,
-h5,
+p {
+  margin-top: 40px;
+  margin-top: 1.81818181818em;
+  margin-bottom: 40px;
+  margin-bottom: 1.81818181818em;
+}
+
 strong {
-    color: #000;
+  color: #000;
 }
 
 img {
-    max-width: 100%;
-}
-
-
-p, dl, table {
-    margin-top: 40px;
-    margin-top: 4rem; 
-    margin-bottom: 40px;
-    margin-bottom: 4rem; 
+  max-width: 100%;
 }
 
 table {
-    width: 100%;
-}
-
-blockquote {
-    border-left: 1px solid #666;
-    /* background: #f2f2f2; */
-    background: #E3F2FD;
-    margin: 4em 0 4em 1em;
-    padding: 0 0 0 1.5em;
-}
-
-li {
-    margin-top: 10px;
-    margin-bottom: 10px;
-}
-
-ul {
-    margin-bottom: 4em;
-}
-
-li ul {
-    margin-bottom:0;
-    padding-bottom:0;
-}
-
-h1,h2,h3 {
-    line-height: 1.2em;
+  width: 100%;
 }
 
 h1 {
   font-size: 34px;
-  font-size: 3.4em;
-  margin-top: 0.588235294em; 
+  font-size: 1.54545454545em;
+  color: #000000;
+}
+
+li {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+ul {
+  margin-bottom: 40px;
+  margin-bottom: 1.81818181818em;
+}
+
+li ul {
+  margin-bottom:0;
+  padding-bottom:0;
 }
 
 h2 {
-  font-size: 28px;
-  font-size: 2.8em;
-  font-style: italic;
-  color: #444;
-  font-weight: 200;
-  margin: 0.666666667em 0 1.333333333em 0;
+  font-size: 26px;
+  font-size: 1.18181818182em;
+  font-weight: 400;
+  font-style: normal;
+  color: #333;
+  line-height: normal;
 }
 
 h3 {
   font-size: 30px;
-  font-size: 3em;
-  margin-top: 2.333333333em; /* 70px */
+  font-size: 1.36363636364em;
+  margin-top: 70px; 
+  margin-top: 2.333333333em; 
+  color: #000000;
 }
 
 h4 {
   font-size: 28px;
-  font-size: 2.8em;
-  margin-top: 2.5em; /* 70px */
+  font-size: 1.27272727273em;
+  margin-top: 70px;
+  margin-top: 2.5em;
+  color: #000000;
 }
 
 h5 {
   font-size: 28px;
-  font-size: 2.8em;
+  font-size: 1.27272727273em;
+  color: #000000;
 }
 
-/* my pull quote style even though "big" is deprecated and maybe even "center" is deprecated but they have existed for over 20 years in browsers */
-center big em {
-  color: #444;
+h6 {
+  font-size: 20px;
+  font-size: 0.909090909091em;
+  color: #666;
+  font-weight: normal;
+  line-height: normal;
 }
 
-center {
-  margin-top: 3em;
-  margin-bottom: 3em;
+blockquote {
+  border-left: 1px solid #666;
+  background: #E3F2FD;
+  margin: 40px 0 40px 10px;
+  margin: 1.81818181818em 0 1.81818181818em 10px;
+  padding: 0 0 0 15px;
 }
 
 code {
   font-family: monospace;
   font-size: 16px;
   line-height: 16px;
-  line-height: 1.6rem;
 }
 
 pre,
@@ -153,30 +130,23 @@ code
 {
   font-family: monospace;
   line-height: 16px;
-  line-height: 1.6rem;
   white-space: -moz-pre-wrap;
   white-space: pre-wrap;
-  background: #f8f8f8;
+  background: #fff8dc;
   padding: 2px 5px;
   border: 1px solid #ddd;
 }
 
 pre code {
-    border: none;
-    background: 0 0;
+  border: none;
+  background: 0 0;
+  padding: 0;
+  margin: 0;
 }
-
-article {
-    margin: 0 auto;
-    max-width:68em;
-    width: 100%;
-}
-
 
 .home-link {
     float: right;
     font-size: 16px;
-    font-size: 1.6em;
     line-height: 90%;
     text-align: right;
     width: 100%;
@@ -187,110 +157,40 @@ article {
     text-transform: lowercase;
 }
 
+@media only screen and (max-width: 720px) {
+  body {
+    max-width: 92%;
+  }
 
-.sitewide-footer {
-    text-align: center;
-    font-size: 20px;
-    font-size: 2em;
+  h1 {
+    font-size: 30px;
+    font-size: 1.36363636364em;
+  }
+
+  h2 {
+    font-size: 24px;
+    font-size: 1.09090909091em;
+  }
+
+  h3 {
+    font-size: 26px;
+    font-size: 1.18181818182em;
+  }
+
+  h4, h5 {
+    font-size: 24px;
+    font-size: 1.09090909091em;
+  }
 }
 
-.home-link a,
-.sitewide-footer a,
-.home-link a:visited,
-.sitewide-footer a:visited {
-    color: #666;
-    text-decoration: none;
-}
-
-.home-link a:hover,
-.sitewide-footer a:hover {
+@media print {    
+  body {
     color: #000;
-    text-decoration: underline;
-}
-
-#toc {
-    font-size: .8em;
-    float: right;
-    background: #f0fff0;
-    display: inline;
-    width: 12.5em;
-    text-align: left;
-    border: 1px solid #ccc;
-    line-height: 1.2em;
-    padding-top: .3em;
-    padding-bottom: .3em;
-    margin: 1.2em -3em 1.2em 1.2em;
-}
-
-.toclevel1 {margin-left:0;}
-.toclevel2 {margin-left:.3em;}
-.toclevel3 {margin-left:.6em;}
-.toclevel4 {margin-left:.9em;}
-.toclevel5 {margin-left:1.2em;}
-.toclevel6 {margin-left:1.5em;}
-
-.blacklinks a,
-.blacklinks a:visited {
-    color: #222;
-    text-decoration: none
-}
-
-.blacklinks a:hover {
-    color: #000;
-    text-decoration: underline
-}
-
-/* 720px divided by 16px */
-@media only screen and (max-width: 45em) {
-    h1 {
-        font-size: 30px;
-        font-size: 3em;
-    }
-
-    h2 {
-        font-size: 26px;
-        font-size: 2.6em;
-    }
-
-    h3 {
-        font-size: 26px;
-        font-size: 2.6em;
-    }
-
-    h4, h5 {
-        font-size: 24px;
-        font-size: 2.4em;
-    }
-
-    ul {
-        padding-left: 2em;
-    }
-
-    article {
-        max-width: 92%;
-    }
-
-    #toc {
-        display: none;
-    }
-}
-
-@media print {
-    html {
-        font-size: 58%; /* 9.28px */
-    }
-    
-    body {
-        color: #000;
-        background-color: #fff;
-        line-height: normal;
-        max-width: 100%;
-    }
-
-    p, li, dl, table {       
-        font-size: 18px;
-        font-size: 1.939655172em; 
-    }
+    background-color: #fff;
+    line-height: normal;
+    max-width: 100%;
+    font-size: 18px;
+  }
 }
 
 

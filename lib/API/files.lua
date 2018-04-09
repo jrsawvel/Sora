@@ -16,6 +16,14 @@ local utils     = require "utils"
 
 
 
+function _save_markup_to_backup_directory(markup, hash)
+
+
+
+end
+
+
+
 function _create_jsonfeed_file(hash, stream)
 
     local json_hash = {}
@@ -61,7 +69,7 @@ end
 
 
 
-function _create_hfeed_file(hash, stream)
+function _create_hfeed_file(stream)
 
     local max_entries = config.get_value_for("max_entries")
     local mft_stream = {}
@@ -69,6 +77,7 @@ function _create_hfeed_file(hash, stream)
     for i=1, max_entries and #stream do
         table.insert(mft_stream, stream[i])
     end
+
 
     page.set_template_name("hfeed")
     page.set_template_variable("site_name", config.get_value_for("site_name"))
@@ -145,13 +154,13 @@ function _update_links_json_file(hash)
         end
     end
 
-    return stream
+    return stream -- table of arrays of hashes for: title, author, created, and url.
 
 end
 
 
 
-function _save_markup_to_web_directory(submit_type, markup, hash)
+function _save_markup_to_web_directory(markup, hash)
 
     local markup_filename
 
@@ -174,7 +183,7 @@ function _save_markup_to_web_directory(submit_type, markup, hash)
 
     local o = io.open(markup_filename, "w")
     if o == nil then
-        rj.report_error("500", "Unable to open file for write.", "Post id: " .. hash.slug .. " filename: " .. markup_filename)
+        rj.report_error("500", "Saving Markup to Web Dir. Unable to open file for write.", "Post id: " .. hash.slug .. " filename: " .. markup_filename)
         return false
     end
 
@@ -197,6 +206,8 @@ function _save_markup_to_storage_directory(submit_type, markup, hash)
 
     if hash.dir ~= nil then
         tmp_slug = utils.clean_title(hash.dir) .. "-" .. tmp_slug
+--         rj.report_error("400", "hash.slug = " .. hash.slug, "hash.dir = " .. hash.dir)
+--         return false
     end 
 
     -- write markup to markup storage outside of document root
@@ -210,7 +221,7 @@ function _save_markup_to_storage_directory(submit_type, markup, hash)
     else
         local o = io.open(markup_filename, "w")
         if o == nil then
-            rj.report_error("500", "Unable to open file for write.", "Post id: " .. hash.slug .. " filename: " .. markup_filename)
+            rj.report_error("500", "Save Markup to Storage Dir. Unable to open file for write.", "Post id: " .. hash.slug .. " filename: " .. markup_filename)
             return false
         else
             o:write(save_markup .. "\n")
@@ -247,7 +258,7 @@ function _save_html(html, hash)
 
     local o = io.open(html_filename, "w")
     if o == nil then
-        rj.report_error("500", "Unable to open file for write.", "Post id: " .. hash.slug .. " filename: " .. html_filename)
+        rj.report_error("500", "Save HTML. Unable to open file for write.", "Post id: " .. hash.slug .. " filename: " .. html_filename)
         return false
     end
      
@@ -260,6 +271,24 @@ end
 
 
 
+
+
+--[[
+incoming hash or table from the create module would contain all or most of the following:
+  hash.created_date 
+  hash.created_time
+  hash.html
+  hash.title
+  hash.slug
+  hash.post_type 
+  hash.reading_time 
+  hash.word_count
+  hash.author
+  hash.custom_css  
+  hash.template
+  hash.dir
+  hash.location
+]]
 function M.output(submit_type, hash, markup)
 
     if hash.template ~= nil then
@@ -283,6 +312,8 @@ function M.output(submit_type, hash, markup)
 
     local html_output = page.get_output(hash.title)
 
+    page.reset()
+
     if submit_type == "update" then 
         hash.slug = hash.original_slug
     end
@@ -296,11 +327,11 @@ function M.output(submit_type, hash, markup)
         return false
     end
 
---    if submit_type == "update" then
---        _save_markup_to_backup_directory(submit_type, markup, hash)
---    end
+    if submit_type == "update" then
+        _save_markup_to_backup_directory(markup, hash)
+    end
 
-    if _save_markup_to_web_directory(submit_type, markup, hash) == false then
+    if _save_markup_to_web_directory(markup, hash) == false then
         return false
     end
 
@@ -310,7 +341,7 @@ function M.output(submit_type, hash, markup)
 
     if submit_type == "create" then
         local stream = _update_links_json_file(hash)
-        if _create_hfeed_file(hash, stream) == false then
+        if _create_hfeed_file(stream) == false then
             return false
         end
         _create_jsonfeed_file(hash, stream)
@@ -320,6 +351,27 @@ function M.output(submit_type, hash, markup)
 
 end
 
+
+
+function M.read_markup_file(post_id)
+
+    local markup = ""
+
+    local markup_filename = config.get_value_for("default_doc_root") .. "/" .. post_id .. ".txt"
+
+    local f = io.open(markup_filename, "r")
+
+    if f == nil then
+        rj.report_error("400", "Could not open " .. post_id .. ".txt for read.", "")
+    else
+        for line in f:lines() do
+            markup = markup .. line .. "\n"
+        end
+        f:close()
+    end
+
+    return markup
+end
 
 
 return M

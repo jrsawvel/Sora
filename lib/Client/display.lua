@@ -77,13 +77,14 @@ function M.get_POST_value_for(name)
     return cgilua.POST[name]
 end
 
+
+
 function M.get_query_info()
     local str;
     local t = {}
     -- ?bird=warbler
 --    urlcode.parsequery (os.getenv("QUERY_STRING"), t)
 --    M.report_error("user", "debug",  t.bird)
-    M.report_error("user", "debug",  cgilua.POST.email)
 end
 
 

@@ -3,9 +3,9 @@
 local M = {}
 
 
-local cgilua  = require "cgilua"
+local cgilua = require "cgilua"
 local urlcode = require "cgilua.urlcode"
-local cjson   = require "cjson"
+local cjson  = require "cjson"
 local rex     = require "rex_pcre"
 
 
@@ -18,7 +18,8 @@ local config  = require "config"
 local files   = require "files"
 
 
-function M.create_post()
+
+function M.update_post()
 
     local json_text = cgilua.POST[1]
 
@@ -32,9 +33,10 @@ function M.create_post()
         rj.report_error("400", "Unable to peform action.", "You are not logged in.")
     else
         local submit_type = hash.submit_type
-        if submit_type ~= "Preview" and submit_type ~= "Create" then
+        if submit_type ~= "Preview" and submit_type ~= "Update" then -- diff from create
             rj.report_error("400", "Unable to process post.", "Invalid submit type given.")
         else
+           local original_slug   = hash.original_slug -- diff from create
            local original_markup = hash.markup
            local markup = utils.trim_spaces(original_markup)
            if markup == nil or markup == "" then
@@ -48,7 +50,7 @@ function M.create_post()
 
                local t = title.process(markup)
                if t.is_error then
-                   rj.report_error("400", "Error creating post.", t.error_message)
+                   rj.report_error("400", "Error updating post.", t.error_message) -- diff from create
                else
                    local page_data   = format.extract_css(t.after_title_markup)
                    local html        = format.markup_to_html(page_data.markup)
@@ -67,6 +69,8 @@ function M.create_post()
                    post_hash.word_count     = post_stats.word_count 
                    post_hash.author         = config.get_value_for("author_name")
                    post_hash.custom_css     = page_data.custom_css
+                   post_hash.original_slug  = original_slug -- diff from create
+                   post_hash.post_id        = original_slug -- diff from create
 
                    local tmp_diff_slug = rex.match(markup, "^<!--[ ]*slug[ ]*:[ ]*(.+)[ ]*-->", 1, "im")
                    if tmp_diff_slug ~= nil then
@@ -96,8 +100,8 @@ function M.create_post()
 
                       local rc_boolean = true
 
-                      if submit_type == "Create" then
-                          rc_boolean = files.output("create", post_hash, markup)
+                      if submit_type == "Update" then -- diff from create
+                          rc_boolean = files.output("update", post_hash, markup) -- diff from create
                       end
 
                       if rc_boolean == true then
