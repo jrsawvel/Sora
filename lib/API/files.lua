@@ -18,7 +18,26 @@ local utils     = require "utils"
 
 function _save_markup_to_backup_directory(markup, hash)
 
+    local tmp_post_id = hash.slug
+    local tmp_slug    = hash.slug
 
+    if hash.dir ~= nil then
+        tmp_post_id = hash.dir .. "/" .. hash.slug
+        tmp_slug = utils.clean_title(hash.dir) .. "-" .. tmp_slug
+    end
+
+    local previous_markup_version = M.read_markup_file(tmp_post_id)
+    local epoch_secs = os.time()
+
+    local markup_filename = config.get_value_for("versions_storage") .. "/" .. tmp_slug .. "-" .. epoch_secs .. "-version.txt"
+
+    local f = io.open(markup_filename, "w")
+    if f == nil then
+        rj.report_error("500", "Unable to open backup file for write.", markup_filename)
+    else
+        f:write(previous_markup_version)
+        f:close()
+    end
 
 end
 

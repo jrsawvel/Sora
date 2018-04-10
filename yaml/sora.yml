@@ -7,7 +7,7 @@
     template_home:                  /home/sora/Sora/tmpl
     cookie_prefix:                  sora
     css_dir_url:                    /css 
-    maincss_url:                    http://soratestsite.com/css/sora2.css
+    maincss_url:                    http://soratestsite.com/css/sora.css
     default_doc_root:               /home/sora/docroot
     debug_mode:                     true
     api_url:                        http://soratestsite.com/api/v1
@@ -26,3 +26,4 @@
     json_feed_file:                 feed.json
     hfeed_file:                     hfeed.html
     max_entries:                    40
+    versions_storage:               /home/sora/docroot/versions

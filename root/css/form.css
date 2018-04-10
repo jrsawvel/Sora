@@ -1,9 +1,13 @@
+
+body {
+    max-width: 1020px;
+}
+
 form {
     font-size: 20px;
 }
 
 textarea {
-    /* font-family: "Courier New", Courier,  monospace, sans-serif;  */
     font-family: monospace, sans-serif; 
     font-size: 90%;
     overflow: auto;
@@ -14,10 +18,12 @@ textarea {
     margin: 0px;
 }
 
+
 .textareaboxpost {
     width: 90%
-    height: 250px;
+/*    height: 250px; */
 }
+
 
 .submitbutton {
     -moz-border-radius: 10px;
@@ -41,7 +47,6 @@ font-size: 100%;
 margin: 0;
 }
 
-
 @media only screen and (min-width: 320px) { 
     #textareaboxpost {
         width: 95%;
@@ -58,8 +63,7 @@ margin: 0;
 
 @media only screen and (min-width: 1025px) {
     #textareaboxpost {
-        width: 70%;
+        width: 70%; 
         height: 600px;
     }
 }
-

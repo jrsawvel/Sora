@@ -2,13 +2,13 @@
 
 <h1>{{{site_name}}}</h1>
 
-<p><em>{{{site_description}}}</em></p>
+<!-- <p><em>{{{site_description}}}</em></p> -->
 
 {{#article_loop}}
 
 <p class="h-entry">
   <a class="u-url" href="{{{url}}}"><span class="p-name">{{{title}}}</span></a>
-  <br /><time class="dt-published" datetime="{{{created}}}">{{{created}}}</time>
+  <br /><small><time class="dt-published" datetime="{{{created}}}">{{{created}}}</time></small>
   <span class="p-author h-card" style="display:none;">{{{author}}}</span>
 </p>
 
