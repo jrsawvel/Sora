@@ -323,6 +323,7 @@ function M.output(submit_type, hash, markup)
     page.set_template_variable("created_date", hash.created_date)
     page.set_template_variable("created_time", hash.created_time)
     page.set_template_variable("author", hash.author)
+    page.set_template_variable("permalink", hash.location)
 
     if hash.custom_css ~= nil then
         page.set_template_variable("using_custom_css", true)
