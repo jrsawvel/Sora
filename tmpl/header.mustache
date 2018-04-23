@@ -1,10 +1,14 @@
 <!DOCTYPE html>
 <html len="en">
 <head>
-  <meta charset="utf-8" />
   <title>{{pagetitle}}</title>
-  <link rel="stylesheet" href="{{{maincss_url}}}" /> 
+  <meta charset="utf-8" />
+  <meta name="author" content="{{{author}}}" />
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta property="og:url" content="{{{permalink}}}" />
+  <link rel="stylesheet" href="{{{maincss_url}}}" /> 
+  <link rel="alternate" type="application/json" title="JSON Feed" href="http://sora.soupmode.com/feed.json" />
+  <link rel="feed" type="text/html" title="Microformatted HTML feed page" href="http://sora.soupmode.com/hfeed.html" /> 
 <style>
 /* maybe later include name="inc_minified-css.tmpl" */
 {{#using_custom_css}}
