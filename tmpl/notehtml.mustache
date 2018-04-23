@@ -1,9 +1,11 @@
 {{> header}}
-
+<article class="h-entry">
+<div class="e-content">
 {{{html}}}
-
+</div>
 <p style="display:none;">
-<time class="dt-published" datetime="{{{created_date}}}T{{{created_time}}}Z">{{{pagecreateddate}}}</time>  
+Published by <a class="p-author h-card" href="/about.html">{{{author}}}</a> 
+ on <time class="dt-published" datetime="{{{created_date}}}T{{{created_time}}}Z"><a class="u-url" href="{{{permalink}}}">{{{pagecreateddate}}}</a></time>.
 </p>
-
+</article>
 {{> footer}}
