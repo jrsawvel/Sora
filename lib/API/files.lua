@@ -45,6 +45,7 @@ end
 
 function _create_jsonfeed_file(hash, stream)
 
+    local max_entries = config.get_value_for("max_entries")
     local json_hash = {}
 
     json_hash.version        =  "https://jsonfeed.org/version/1"
@@ -57,7 +58,8 @@ function _create_jsonfeed_file(hash, stream)
 
     local items = {}
 
-    for i=1, #stream do
+--    for i=1, max_entries and #stream do
+    for i=1, max_entries do
         local h = {}
         h.id  = stream[i].url
         h.url = stream[i].url
@@ -71,6 +73,8 @@ function _create_jsonfeed_file(hash, stream)
 
     local json_text = pretty(json_hash, "\n", "  ")
 
+    local json_text_2 = string.gsub(json_text, "\\/", "/")
+
     local json_feed_filename = config.get_value_for("default_doc_root") .. "/" .. config.get_value_for("json_feed_file")
 
     local o = io.open(json_feed_filename, "w")
@@ -78,7 +82,7 @@ function _create_jsonfeed_file(hash, stream)
         rj.report_error("500", "Unable to open JSON feed file for write.", json_feed_filename)
         return false
     else
-        o:write(json_text)
+        o:write(json_text_2)
         o:close()
     end
 
@@ -93,7 +97,8 @@ function _create_hfeed_file(stream)
     local max_entries = config.get_value_for("max_entries")
     local mft_stream = {}
 
-    for i=1, max_entries and #stream do
+--    for i=1, max_entries and #stream do
+    for i=1, max_entries do
         table.insert(mft_stream, stream[i])
     end
 
@@ -213,6 +218,40 @@ function _save_markup_to_web_directory(markup, hash)
 
 end
 
+
+function _save_json_post_to_web_directory(markup, hash)
+
+    local json_post_filename -- the json version of a web post
+
+    hash.markup = markup
+
+    if hash.dir ~= nil then
+        json_post_filename = config.get_value_for("default_doc_root") .. "/" .. hash.dir .. "/" .. hash.slug .. ".json"
+    else 
+        json_post_filename = config.get_value_for("default_doc_root") .. "/" .. hash.slug .. ".json"
+    end
+ 
+    if rex.match(json_post_filename, "^[a-zA-Z0-9/%.%-_]+$") == nil then
+        rj.report_error("500", "Bad file name or directory path.", "Could not write JSON for post id: " .. hash.title .. " filename: " .. json_post_filename)
+        return false
+    end
+
+    local o = io.open(json_post_filename, "w")
+    if o == nil then
+        rj.report_error("500", "Saving JSON to Web Dir. Unable to open file for write.", "Post id: " .. hash.slug .. " filename: " .. json_post_filename)
+        return false
+    end
+
+    local json_text = pretty(hash, "\n", "  ")
+
+    local json_text_2 = string.gsub(json_text, "\\/", "/")
+
+    o:write(json_text_2)
+    o:close()
+
+    return true
+
+end
 
 
 function _save_markup_to_storage_directory(submit_type, markup, hash)
@@ -352,6 +391,10 @@ function M.output(submit_type, hash, markup)
     end
 
     if _save_markup_to_web_directory(markup, hash) == false then
+        return false
+    end
+
+    if _save_json_post_to_web_directory(markup, hash) == false then
         return false
     end
 
