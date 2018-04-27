@@ -242,12 +242,15 @@ function _save_json_post_to_web_directory(markup, hash)
         return false
     end
 
-    local json_text = pretty(hash, "\n", "  ")
-
-    local json_text_2 = string.gsub(json_text, "\\/", "/")
-
-    o:write(json_text_2)
-    o:close()
+    if hash.custom_json == nil then
+        local json_text = pretty(hash, "\n", "  ")
+        local json_text_2 = string.gsub(json_text, "\\/", "/")
+        o:write(json_text_2)
+        o:close()
+    else
+        o:write(hash.custom_json)
+        o:close()
+    end
 
     return true
 
@@ -343,6 +346,7 @@ incoming hash or table from the create module would contain all or most of the f
   hash.word_count
   hash.author
   hash.custom_css  
+  hash.custom_json
   hash.template
   hash.dir
   hash.location

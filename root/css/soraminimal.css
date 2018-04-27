@@ -1,4 +1,18 @@
 
+
+/*
+
+body {margin: 0 auto; max-width: 640px; width: 100%; font-size: 21px; font-family: Helvetica, sans-serif; line-height: 34px; color: #111; background-color: #fff;}
+img {max-width: 100%;}
+pre, code {background: #f8f8f8; white-space: -moz-pre-wrap; white-space: pre-wrap;}
+p {margin-top: 30px; margin-bottom: 30px;}
+h2 {font-size: 29px;}
+@media print{body{max-width:none}}
+@media only screen and (max-width: 680px) { body {max-width:92%} }
+
+*/
+
+
 body {
 
     margin: 10px auto;
@@ -21,12 +35,13 @@ body {
 
 
     font-family: 
+        system-ui,
         -apple-system, 
         BlinkMacSystemFont, 
         "San Francisco", 
+        "Segoe UI", 
         "Roboto",
         "Oxygen",
-        "Segoe UI", 
         "Ubuntu", 
         "Cantarell",
         "Fira Sans", 

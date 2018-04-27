@@ -1,11 +1,14 @@
-
 <!DOCTYPE html>
 <html len="en">
 <head>
-  <meta charset="utf-8" />
   <title>{{pagetitle}}</title>
-<!--  <link rel="stylesheet" href="{{{maincss_url}}}" />  -->
+  <meta charset="utf-8" />
+  <meta name="author" content="{{{author}}}" />
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta property="og:url" content="{{{permalink}}}" />
+<!--  <link rel="stylesheet" href="{{{maincss_url}}}" />  -->
+  <link rel="alternate" type="application/json" title="JSON Feed" href="http://sora.soupmode.com/feed.json" />
+  <link rel="feed" type="text/html" title="Microformatted HTML feed page" href="http://sora.soupmode.com/hfeed.html" /> 
 <style>
 /* maybe later include name="inc_minified-css.tmpl" */
 {{#using_custom_css}}
@@ -19,16 +22,27 @@
 <a href="/">home</a>
 </div>
 
-<h1>{{{title}}}</h1> 
+<article class="h-entry">
+<h1 class="p-name">{{{title}}}</h1> 
+<div class="e-content">
 {{{html}}}
-<p>
-{{{author}}} - {{{created_date}}}T{{{created_time}}}Z
+</div>
+<p style="display:none;">
+Published by <a class="p-author h-card" href="/about.html">{{{author}}}</a> 
+ on <time class="dt-published" datetime="{{{created_date}}}T{{{created_time}}}Z"><a class="u-url" href="{{{permalink}}}">{{{pagecreateddate}}}</a></time>.
 </p>
+</article>
 
+<p>
 <center>
-<small><a href="/">home</a> - <a href="/info.html">info</a> - <a href="/search.html">search</a></small><br />
-<small>{{{pagecreateddate}}}</small>
+<small>
+<a href="/">home</a>
+ - <a href="/info.html">info</a>
+ - <a href="/search.html">search</a>
+ - <a href="{{{permalink}}}">#</a>
+</small>
 </center>
+</p>
 </body>
 </html>
 

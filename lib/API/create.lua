@@ -67,6 +67,7 @@ function M.create_post()
                    post_hash.word_count     = post_stats.word_count 
                    post_hash.author         = config.get_value_for("author_name")
                    post_hash.custom_css     = page_data.custom_css
+                   post_hash.custom_json    = format.extract_json(t.after_title_markup)
 
                    local tmp_diff_slug = rex.match(markup, "^<!--[ ]*slug[ ]*:[ ]*(.+)[ ]*-->", 1, "im")
                    if tmp_diff_slug ~= nil then

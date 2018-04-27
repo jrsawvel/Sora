@@ -33,7 +33,8 @@ end
 
  
 
--- <!-- toc:yes -->
+-- <!-- toc:yes -->  except that no YES/NO commands exist in Sora at the moment. 
+-- this function is unused.
 function M.get_power_command_on_off_setting_for(command, str, default_bool) 
 
     local return_bool = default_bool
@@ -76,6 +77,19 @@ function M.extract_css(str)
     end 
 
     return return_data
+    
+end
+
+
+
+function M.extract_json(str)
+
+    str = rex.gsub(str, "^json_end -->", "</jsontmp>", nil, "im")
+    str = rex.gsub(str, "^<!-- json_start", "<jsontmp>", nil, "im")
+
+    local pre_json, tmp_json, tmp_markup = rex.match(str, "^(.*)<jsontmp>(.*)</jsontmp>(.*)$", 1, "is")
+
+    return utils.trim_spaces(tmp_json)
     
 end
 
