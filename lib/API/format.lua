@@ -89,8 +89,11 @@ function M.extract_json(str)
 
     local pre_json, tmp_json, tmp_markup = rex.match(str, "^(.*)<jsontmp>(.*)</jsontmp>(.*)$", 1, "is")
 
-    return utils.trim_spaces(tmp_json)
-    
+    if tmp_json ~= nil then 
+        return utils.trim_spaces(tmp_json)
+    else
+        return nil
+    end
 end
 
 
