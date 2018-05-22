@@ -1,5 +1,6 @@
 # Sora User Guide
 
+*created Apr 10, 2018* - *updated May 21, 2018*
 
 The commands below will follow `http://yourdomain`.
 
@@ -69,11 +70,27 @@ To use custom CSS in a post, do the following:
 
 The starting and ending comment lines must occur at the beginning of a line.
 
+Custom JSON can be output that overrides the default JSON that would be created to represent a post.
+
+    <!-- json_start
+    {
+      "items": [
+       {
+          "date_published": "2018-04-27T18:43:02Z",
+          "id": "http://sora.soupmode.com/feed1442.html",
+          "url": "http://sora.soupmode.com/feed1442.html",
+          "content_text": "custom json feed test 27apr2018 1442"
+       },
+      ...
+    json_end -->
+    
 
 
 ### Files
 
 To access the markup text version of a post, replace `.html` at the end of the URL with `.txt`.
+
+To access the JSON version of a post, replace `.html` or `.txt` at the end of the URL with `.json`.
 
 Sora maintains a list of all links to posts in a file called `links.json`. Sora uses this file to create `feed.json` and `hfeed.html`. 
 
@@ -118,8 +135,6 @@ If Google has indexed the site, then include the following HTML to get Google se
      </form>
     </p>
 
-
-*created Apr 10, 2018*
 
 
 

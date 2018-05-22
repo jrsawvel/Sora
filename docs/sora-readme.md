@@ -1,5 +1,6 @@
 # Sora README
 
+*created Apr 10, 2018* - *updated May 21, 2018*
 
 Sora is a web-based static site generator. Posts can be created and updated through the web browser. The app creates static HTML files that readers access.
 
@@ -24,7 +25,9 @@ Test site: <http://sora.soupmode.com>.
 * Responsive web design.
 * Client-side JavaScript is used only with the editor.
 * Reading time and word count are calculated for each post.
-* The author has a lot of freedom for customizing web posts, since custom CSS can be added.
+* Each post is saved as .html, .txt, and .json.
+* Custom CSS can be included within the markup for a post.
+* Custom JSON can be output that overrides the default JSON that would represent a post.
 
 
 
@@ -82,8 +85,4 @@ In nature, a Sora is a water bird that inhabits marshes. It's more often heard t
 
 <https://www.allaboutbirds.org/guide/Sora/>
 
-
-
-
-*updated Apr 10, 2018*
 

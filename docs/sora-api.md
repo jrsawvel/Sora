@@ -1,5 +1,6 @@
 # Sora API
 
+*created Apr 10, 2018* - *updated May 21, 2018*
 
 In the Sora YAML config file `sora.yml`, an entry exists that specifies the API location:
 
@@ -204,7 +205,9 @@ Create the post:
     }
 
 
-`/links.json` will contain the new post at the top of the file. Other files updated after a "Create" include `/rss.xml`, `/sitemap.xml`, and `/mft.html`.
+`/links.json` will contain the new post at the top of the file. 
+
+The feed files `hfeed.html` and `feed.json` get created after each "Create", and the number of entries included in the feed files are determined by a setting in the config file.
 
 At the moment, no files are updated when an existing post is modified.
 
@@ -277,8 +280,7 @@ It's also possible to ignore the API code and access the `.txt` version of a pos
 * HTML = <http://sora.soupmode.com/info.html>
 * Markup = <http://sora.soupmode.com/info.txt>
 
-
-
+A JSON version of a post also exists at <http://sora.soupmode.com/info.json>.
 
 
 
@@ -377,9 +379,6 @@ The Sora API borrowed the simple approach from the [White House Web API Standard
 The above approach goes [against the grain](http://www.micheltriana.com/blog/2013/09/27/http-status-codes-in-rest-web-api) of [recommended practices](http://www.vinaysahni.com/best-practices-for-a-pragmatic-restful-api#http-status). Maybe in the future, I'll expand Sora returned status codes.
 
 Since Sora is a static site generator, then accessing an HTML file that does not exist will cause the web server to throw a 404 error. Sora Nginx config file instructs Nginx to display a custom HTML file that can be created with Sora.
-
-
-*updated Sep 6, 2017*
 
 
 
