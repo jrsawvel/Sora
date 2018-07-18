@@ -41,7 +41,7 @@ function M.process(markup)
         t.is_error = true
         t.error_message = "You must give a title for your post."
     else
-        local tmp_title_2 = string.match(t.title, '#%s*(.+)')
+        local tmp_title_2 = string.match(t.title, '^#%s*(.+)')
 
         if tmp_title_2 ~= nil then
             t.title = tmp_title_2 
