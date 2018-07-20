@@ -114,7 +114,13 @@ end
 
 function M.markup_to_html(markup)
 
-    local html = _custom_commands(markup)
+    local html = markup 
+
+    if M.get_power_command_on_off_setting_for("url_to_link", html, false) == true then
+        html = utils.url_to_link(html) 
+    end
+
+    html = _custom_commands(html)
 
     html = markdown(html)
 

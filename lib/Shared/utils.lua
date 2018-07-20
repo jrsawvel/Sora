@@ -10,6 +10,19 @@ local https = require "ssl.https"
 
 
 
+
+function M.url_to_link(str)
+    str = " " .. str
+    for w, p, d in rex.gmatch(str, "([\\s])(\\w+://)([.A-Za-z0-9?=:|;,_#^\\-/%+&~\\(\\)@!]+)", "is", nil) do
+--        str = rex.gsub(str, "[\\s]" .. p .. d, ' <a href="' .. p .. d .. '">' .. p .. d .. '</a>', nil, "is")
+        str = rex.gsub(str, w .. p .. d, w .. '<a href="' .. p .. d .. '">' .. p .. d .. '</a>', nil, "is")
+    end
+    return str
+end
+
+
+
+
 function M.clean_title(str)
     str = string.gsub(str, "-", "")
     str = string.gsub(str, " ", "-")
