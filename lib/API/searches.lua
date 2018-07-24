@@ -67,7 +67,16 @@ function M.searches(a_params)
                 rj.success(hash) 
             end
         else
-            rj.report_error("400", "Unable to execute search.", grep_cmd)
+            -- if no search results are found, then program ends up here because Nix system returns non-zero.
+            -- let client side deal with no results found.
+            local hash = {
+                total_hits = 0,
+                search_text = search_text,
+                posts = {}
+            }
+       
+            rj.success(hash)
+--            rj.report_error("400", "Unable to execute search.", grep_cmd)
         end
 
     end

@@ -55,12 +55,16 @@ function M.do_search(a_params)
             if status_code >= 400 and status_code < 500 then
                 display.report_error("user", h_json["user_message"], h_json["system_message"])
             else
-                local stream = h_json.posts    
-                page.set_template_name("searchresults")
-                page.set_template_variable("stream_loop", stream)
-                page.set_template_variable("keyword", search_string)
-                page.set_template_variable("search_uri_str", search_uri_str) 
-                display.web_page(page.get_output("Search results for " .. search_string))
+                if h_json.total_hits == 0 then
+                    display.success("No search results found", "Search results for '" .. search_string .. "'", "No matches were found.")
+                else
+                    local stream = h_json.posts    
+                    page.set_template_name("searchresults")
+                    page.set_template_variable("stream_loop", stream)
+                    page.set_template_variable("keyword", search_string)
+                    page.set_template_variable("search_uri_str", search_uri_str) 
+                    display.web_page(page.get_output("Search results for " .. search_string))
+               end
             end
 
         end
