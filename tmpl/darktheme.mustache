@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>{{pagetitle}}</title>
+  <meta charset="utf-8" />
+  <meta name="author" content="{{{author}}}" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta property="og:url" content="{{{permalink}}}" />
+  <link rel="stylesheet" href="{{{maincss_url}}}" /> 
+  <link rel="alternate" type="application/json" title="JSON Feed" href="http://sora.soupmode.com/feed.json" />
+  <link rel="feed" type="text/html" title="Microformatted HTML feed page" href="http://sora.soupmode.com/hfeed.html" /> 
+<style>
+/* maybe later include name="inc_minified-css.tmpl" */
+body {
+  background-color: #333;
+  color:     #ccc;
+}
+
+strong {
+  color: #fff;
+}
+
+h1, h3, h4, h5 {
+  color: #fff;
+  color: #FFC300;
+}
+
+h2 {
+  color: #ccc;
+}
+
+h6 {
+  color: #ddd;
+}
+
+blockquote, code, pre {
+  background: #666;
+}
+
+a {
+    color: #3ff;
+}
+a:visited {
+    color: #f9f;
+}
+a:hover {
+    /* color: yellowgreen; */
+    color: #58D68D;
+    text-decoration: underline;
+}
+
+sup {
+  background: #000;
+}
+
+
+{{#using_custom_css}}
+{{{custom_css}}}
+{{/using_custom_css}}
+</style>
+</head>
+<body>
+
+<div class="home-link">
+<a href="/">home</a>
+</div>
+
+<article class="h-entry">
+<h1 class="p-name">{{{title}}}</h1> 
+<div class="e-content">
+{{{html}}}
+</div>
+<p style="display:none;">
+Published by <a class="p-author h-card" href="/about.html">{{{author}}}</a> 
+ on <time class="dt-published" datetime="{{{created_date}}}T{{{created_time}}}Z"><a class="u-url" href="{{{permalink}}}">{{{pagecreateddate}}}</a></time>.
+</p>
+</article>
+
+<p>
+<center>
+<small>
+<a href="/">home</a>
+ - <a href="/info.html">info</a>
+ - <a href="/search.html">search</a>
+ - <a href="{{{permalink}}}">#</a>
+</small>
+</center>
+</p>
+</body>
+</html>
+
