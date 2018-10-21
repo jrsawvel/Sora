@@ -142,13 +142,8 @@ code
 {
   font-family: monospace;
   line-height: 16px;
-  font-size: 16px;
-/*
   white-space: -moz-pre-wrap;
   white-space: pre-wrap;
-*/
-  overflow-x: scroll;
-  overflow-y: hidden;
   background: #fff8dc;
   padding: 2px 5px;
   border: 1px solid #ddd;
@@ -210,4 +205,51 @@ pre code {
   }
 }
 
+
+
+<!-- css_start
+
+body {
+  background-color: #333;
+  color:     #ccc;
+}
+
+strong {
+  color: #fff;
+}
+
+h1, h3, h4, h5 {
+  color: #fff;
+  color: #FFC300;
+}
+
+h2 {
+  color: #ccc;
+}
+
+h6 {
+  color: #ddd;
+}
+
+blockquote, code, pre {
+  background: #666;
+}
+
+a {
+    color: #3ff;
+}
+a:visited {
+    color: #f9f;
+}
+a:hover {
+    /* color: yellowgreen; */
+    color: #58D68D;
+    text-decoration: underline;
+}
+
+sup {
+  background: #000;
+}
+
+css_end -->
 
