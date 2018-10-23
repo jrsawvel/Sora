@@ -24,6 +24,7 @@
     links_json_file:                links.json
     links_json_file_storage:        /home/sora/filelist
     json_feed_file:                 feed.json
+    rss3_feed_file:                 rss3.txt
     hfeed_file:                     hfeed.html
     max_entries:                    40
     versions_storage:               /home/sora/docroot/versions

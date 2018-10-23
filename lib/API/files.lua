@@ -127,6 +127,63 @@ end
 
 
 
+-- Aaron Swartz's half-humorous and half-serious text-based spec from 2002, that I still like in 2018. 
+-- http://www.aaronsw.com/2002/rss30
+
+function _create_rss3_file(hash, stream)
+
+    local max_entries = config.get_value_for("max_entries")
+    local rss3_hash = {}
+
+    rss3_hash.title          =  config.get_value_for("site_name")
+    rss3_hash.description    =  config.get_value_for("site_description")
+    rss3_hash.link           =  config.get_value_for("home_page") 
+    rss3_hash.generator      =  config.get_value_for("app_name")
+    rss3_hash.uri            =  config.get_value_for("home_page") .. "/" .. config.get_value_for("rss3_feed_file")
+    rss3_hash.created        =  os.date("%Y-%m-%dT%XZ")
+
+    local items = {}
+
+--    for i=1, max_entries and #stream do
+    for i=1, max_entries do
+        local h = {}
+        h.title   = stream[i].title
+        h.link    = stream[i].url
+        h.created = stream[i].created
+        table.insert(items, h)
+    end
+
+    rss3_hash.items = items
+
+    page.set_template_name("rss3")
+
+    page.set_template_variable("title",       rss3_hash.title) 
+    page.set_template_variable("description", rss3_hash.description)
+    page.set_template_variable("link",        rss3_hash.link)
+    page.set_template_variable("generator",   rss3_hash.generator)
+    page.set_template_variable("uri",         rss3_hash.uri)
+    page.set_template_variable("created",     rss3_hash.created)
+    page.set_template_variable("items_loop",  rss3_hash.items)
+
+    local rss3_output = page.get_output_bare()
+
+    local rss3_feed_filename = config.get_value_for("default_doc_root") .. "/" .. config.get_value_for("rss3_feed_file")
+
+    local o = io.open(rss3_feed_filename, "w")
+    if o == nil then
+        rj.report_error("500", "Unable to open RSS3 feed file for write.", rss3_feed_filename)
+        return false
+    else
+        o:write(rss3_output)
+        o:close()
+    end
+
+    return true
+
+end
+
+
+
 function _update_links_json_file(hash)
 
     local filename = config.get_value_for("links_json_file_storage") .. "/" .. config.get_value_for("links_json_file")
@@ -412,6 +469,7 @@ function M.output(submit_type, hash, markup)
             return false
         end
         _create_jsonfeed_file(hash, stream)
+        _create_rss3_file(hash, stream)
     end
 
     return true

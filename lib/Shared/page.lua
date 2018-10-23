@@ -48,6 +48,11 @@ function M.get_output_min()
 end
 
 
+function M.get_output_bare()
+    return lustache:render(template_text, view_model, partials)
+end
+
+
 function process_includes()
     local partial_name 
     for partial_name in string.gmatch(template_text, '{{> ([%w_]*)}}') do
