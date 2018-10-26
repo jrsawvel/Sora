@@ -1,6 +1,6 @@
 # Sora README
 
-*created Apr 10, 2018* - *updated May 21, 2018*
+*created Apr 10, 2018* - *updated Oct 24, 2018*
 
 Sora is a web-based static site generator. Posts can be created and updated through the web browser. The app creates static HTML files that readers access.
 
@@ -22,6 +22,7 @@ Test site: <http://sora.soupmode.com>.
 * Simple and enhanced writing areas.
 * JSON feed for posts sorted by created date. The format is based upon the [Reece-Simmons spec](https://jsonfeed.org).
 * HTML feed (h-feed) page exists that is marked up with Microformats, according to the IndieWeb h-entry spec.
+* [RSS 3.0 feed support](http://sora.soupmode.com/2018/08/21/rss-30-jokey-but-useful-spec.html).
 * Responsive web design.
 * Client-side JavaScript is used only with the editor.
 * Reading time and word count are calculated for each post.

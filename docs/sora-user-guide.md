@@ -1,6 +1,6 @@
 # Sora User Guide
 
-*created Apr 10, 2018* - *updated May 21, 2018*
+*created Apr 10, 2018* - *updated Oct 26, 2018*
 
 The commands below will follow `http://yourdomain`.
 
@@ -58,7 +58,7 @@ Special Sora commands are listed within HMTL comments in the markup.
 * `<!-- slug : slugname -->` - example for the homepage = `slug:index`
 * `<!-- dir:directory-location -->` - example = `dir:2006/03/24`
 * `<!-- template : customarticle -->`
-
+* `<!-- url_to_link : [yes|no] -->` - the default is "no". if set to "yes", then raw URLs get converted to clickable links.
 
 CSS can be included, which can override the default CSS or to add new display options.
 
