@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>{{pagetitle}}</title>
+  <meta charset="utf-8" />
+  <meta name="author" content="{{{author}}}" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta property="og:url" content="{{{permalink}}}" />
+<style>
+{{#using_custom_css}}
+{{{custom_css}}}
+{{/using_custom_css}}
+</style>
+</head>
+<body>
+<h1>{{{title}}}</h1> 
+{{{html}}}
+<p style="display:none;">
+Published by <a href="/about.html">{{{author}}}</a> 
+ on <time datetime="{{{created_date}}}T{{{created_time}}}Z"><a href="{{{permalink}}}">{{{pagecreateddate}}}</a></time>.
+</p>
+<p>
+<center>
+<small>
+<a href="/">home</a>
+ - <a href="/info.html">info</a>
+ - <a href="/search.html">search</a>
+ - <a href="{{{permalink}}}">#</a>
+</small>
+</center>
+</p>
+</body>
+</html>
