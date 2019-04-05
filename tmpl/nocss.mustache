@@ -8,7 +8,7 @@
   <meta property="og:url" content="{{{permalink}}}" />
 <!--  <link rel="stylesheet" href="{{{maincss_url}}}" />  -->
   <link rel="alternate" type="application/json" title="JSON Feed" href="http://sora.soupmode.com/feed.json" />
-  <link rel="feed" type="text/html" title="Microformatted HTML feed page" href="http://sora.soupmode.com/hfeed.html" /> 
+  <link rel="alternate" type="text/html" title="Microformatted HTML feed page" href="http://sora.soupmode.com/hfeed.html" /> 
 <style>
 /* maybe later include name="inc_minified-css.tmpl" */
 {{#using_custom_css}}
@@ -23,26 +23,31 @@
 </div>
 
 <article role="main" class="h-entry">
+<header>
 <h1 class="p-name">{{{title}}}</h1> 
+</header>
 <section class="e-content">
+
 {{{html}}}
 </section>
-<p style="display:none;">
+<footer>
+<p> 
 Published by <a class="p-author h-card" href="/about.html">{{{author}}}</a> 
  on <time class="dt-published" datetime="{{{created_date}}}T{{{created_time}}}Z"><a class="u-url" href="{{{permalink}}}">{{{pagecreateddate}}}</a></time>.
 </p>
+</footer>
 </article>
 
-<p>
-<center>
+
+<div style="text-align:center">
 <small>
 <a href="/">home</a>
  - <a href="/info.html">info</a>
  - <a href="/search.html">search</a>
  - <a href="{{{permalink}}}">#</a>
 </small>
-</center>
-</p>
+</div>
+
 </body>
 </html>
 
