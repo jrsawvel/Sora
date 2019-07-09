@@ -3,8 +3,17 @@
 local M = {}
 
 local rex = require "rex_pcre"
-local markdown = require "markdown"
+-- local markdown = require "markdown"
 
+-- on july 9, 2019, i switched to using cmark, which is a Lua wrapper
+--   around the C library that uses CommonMark, which is a standarized
+--   Markdown spec.
+--   https://commonmark.org
+--   CommonMark functions slightly differently than Gruber version, 
+--   especially regarding blockquotes. CommonMark added a code fence block
+--   command based upon three backticks. i won't need my c./c.. code
+--   fence command anymore.
+local cmark = require "cmark"
 
 local rj      = require "returnjson"
 local utils   = require "utils"
@@ -114,15 +123,18 @@ end
 
 function M.markup_to_html(markup)
 
-    local html = markup 
-
-    if M.get_power_command_on_off_setting_for("url_to_link", html, false) == true then
-        html = utils.url_to_link(html) 
+    if M.get_power_command_on_off_setting_for("url_to_link", markup, false) == true then
+        markup = utils.url_to_link(markup) 
     end
 
-    html = _custom_commands(html)
+    markup = _custom_commands(markup)
 
-    html = markdown(html)
+    -- html = markdown(html)
+
+    -- on july 9, 2019, i switched to cmark.
+    local doc  = cmark.parse_string(markup, cmark.OPT_DEFAULT)
+    -- alternative local doc = cmark.parse_document(input, string.len(input), cmark.OPT_DEFAULT)
+    local html = cmark.render_html(doc, cmark.OPT_DEFAULT)
 
     return html
 
