@@ -134,7 +134,11 @@ function M.markup_to_html(markup)
     -- on july 9, 2019, i switched to cmark.
     local doc  = cmark.parse_string(markup, cmark.OPT_DEFAULT)
     -- alternative local doc = cmark.parse_document(input, string.len(input), cmark.OPT_DEFAULT)
-    local html = cmark.render_html(doc, cmark.OPT_DEFAULT)
+    -- if do not want to support HTML tags added to the markup, then use this option:
+    -- local html = cmark.render_html(doc, cmark.OPT_DEFAULT)
+    -- with the above, raw HTML tags get rendered as <!-- raw HTML omitted --> 
+    -- to permit raw HTML tags to be displayed in the final HTML output, then use this option:
+    local html = cmark.render_html(doc, cmark.OPT_DEFAULT + cmark.OPT_UNSAFE)
 
     return html
 
